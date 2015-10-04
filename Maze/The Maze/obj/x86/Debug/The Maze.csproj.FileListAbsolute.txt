@@ -25,3 +25,5 @@ C:\Users\Toni\Desktop\OnlyAntony-the-maze-b2b1cda35c7a\The Maze\bin\Debug\The Ma
 C:\Users\Toni\Desktop\OnlyAntony-the-maze-b2b1cda35c7a\The Maze\obj\x86\Debug\The Maze.csprojResolveAssemblyReference.cache
 C:\Users\Toni\Desktop\OnlyAntony-the-maze-b2b1cda35c7a\The Maze\obj\x86\Debug\The Maze.exe
 C:\Users\Toni\Desktop\OnlyAntony-the-maze-b2b1cda35c7a\The Maze\obj\x86\Debug\The Maze.pdb
+C:\Users\Toni\Documents\GitHub\Maze\Maze\The Maze\obj\x86\Debug\The Maze.exe
+C:\Users\Toni\Documents\GitHub\Maze\Maze\The Maze\obj\x86\Debug\The Maze.pdb

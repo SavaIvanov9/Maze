@@ -76,7 +76,7 @@ namespace The_Maze
            }
            Console.SetCursorPosition(0, Console.WindowHeight-1);
            Console.ForegroundColor = ConsoleColor.DarkGray;
-           Console.Write("The Maze - Created By Antony Lloyd 2012");
+           Console.Write("The Maze - game recasted by team Jeandan!");
         }
 
         #endregion
