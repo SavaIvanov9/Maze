@@ -2,6 +2,10 @@
 Thumbs.db
 ehthumbs.db
 
+# Bin and debug folders
+bin/
+obj/
+
 # Folder config file
 Desktop.ini
 
