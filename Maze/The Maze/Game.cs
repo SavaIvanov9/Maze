@@ -4,16 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace TheMaze
 {
-    class Program
+    class Game
     {
-
+        
         static void Main(string[] args)
         {
-
+            
+            
             char[,] mazeMatrix =
-            {
+            {   //size of matrix we take with getLengt(0) and getLenght(1). You can input different mazes
                 { '#','#','#','#','#','#','#','#','#','#' },
                 { 'O','?','#',' ',' ',' ','#',' ',' ','#' },
                 { '#',' ','#',' ','#',' ','#','#',' ','#' },
@@ -23,10 +25,10 @@ namespace TheMaze
                 { '#',' ','#','#',' ','#',' ','#',' ','#' },
                 { '#',' ','#',' ',' ','#',' ','#','#','#' },
                 { '#',' ','#',' ','#','#',' ',' ',' ',' ' },
-                { '#','#','#','#','#','#','#','#','#','#' },                
+                { '#','#','#','#','#','#','#','#','#','#' },
             };
 
-            
+
 
             // Console settings
             Console.CursorVisible = false;
@@ -64,10 +66,10 @@ namespace TheMaze
                         if (((currentCol + 1) < mazeMatrix.GetLength(1)) &&
                             (mazeMatrix[currentRow, currentCol + 1] != '#'))
                         {
-                            
-                            if  (mazeMatrix[currentRow, currentCol + 1] == '?')
+
+                            if (mazeMatrix[currentRow, currentCol + 1] == '?')
                             {
-                                
+                                // here must input class questions
                                 Console.WriteLine(@"You have code (string something = 2 + 3 + ""word"" ;). What console will be print!");
                                 Console.WriteLine("1. 7word");
                                 Console.WriteLine("2. 23word");
@@ -139,6 +141,7 @@ namespace TheMaze
 
 
         }
+
         static void printMaze(char[,] matrix, int currentRow, int currentCol)
         {
             for (int row = 0; row < matrix.GetLength(0); row++)
@@ -154,10 +157,7 @@ namespace TheMaze
                     {
                         Console.Write("* ");
                     }
-                    
-                    
                 }
-
                 Console.WriteLine();
             }
         }
