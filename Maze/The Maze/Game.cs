@@ -14,29 +14,19 @@ namespace TheMaze
 
             char[,] mazeMatrix =
             {
-                { '#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'  },
-                { '@',' ','#',' ',' ',' ','#',' ',' ',' ',' ',' ','#',' ',' ',' ','#',' ',' ','#'  },
-                { '#',' ','#',' ','#',' ','#','#',' ','#','#',' ','#',' ','#',' ','#','#',' ','#'  },
-                { '#',' ',' ',' ','#',' ',' ',' ',' ','#','#',' ',' ',' ','#',' ',' ',' ',' ','#'  },
-                { '#','#','#',' ','#','#','#','#',' ','#','#','#','#','#','#','#','#','#',' ','#'  },
-                { '#',' ',' ',' ',' ','#',' ',' ',' ','#','#',' ',' ',' ',' ','#',' ',' ',' ','#'  },
-                { '#',' ','#','#',' ','#','#','#',' ','#','#',' ','#','#',' ','#',' ','#',' ','#'  },
-                { '#',' ','#',' ',' ',' ',' ','#','#','#','#',' ','#',' ',' ','#',' ','#','#','#'  },
-                { '#',' ','#',' ','#','#',' ',' ','#',' ',' ',' ','#',' ','#','#',' ',' ',' ','#'  },
-                { '#','#','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ','#','#'  },
-                { '#','#','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ','#','#'  },
-                { ' ',' ','#',' ','#',' ','#',' ',' ',' ','#',' ','#',' ',' ',' ','#',' ',' ','#'  },
-                { '#',' ','#',' ','#',' ','#','#',' ',' ','#',' ','#',' ','#',' ','#','#',' ','#'  },
-                { '#',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ','#'  },
-                { '#','#','#',' ','#','#','#','#',' ','#','#','#','#',' ','#','#','#','#',' ','#'  },
-                { '#',' ',' ',' ',' ','#',' ',' ',' ','#','#',' ',' ',' ',' ','#',' ',' ',' ','#'  },
-                { '#',' ','#','#',' ','#',' ','#',' ','#','#',' ','#','#',' ','#',' ','#',' ','#'  },
-                { '#',' ','#',' ',' ',' ',' ','#','#','#','#',' ','#',' ',' ','#',' ','#','#','#'  },
-                { '#',' ','#',' ','#','#',' ',' ',' ',' ',' ',' ','#',' ','#','#',' ',' ',' ','#'  },
-                { '#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'  },
+                { '#','#','#','#','#','#','#','#','#','#' },
+                { 'O','?','#',' ',' ',' ','#',' ',' ','#' },
+                { '#',' ','#',' ','#',' ','#','#',' ','#' },
+                { '#','?',' ',' ','#',' ',' ',' ',' ','#' },
+                { '#','#','#',' ','#','#','#','#',' ','#' },
+                { '#',' ',' ',' ',' ','#',' ',' ',' ','#' },
+                { '#',' ','#','#',' ','#',' ','#',' ','#' },
+                { '#',' ','#',' ',' ','#',' ','#','#','#' },
+                { '#',' ','#',' ','#','#',' ',' ',' ',' ' },
+                { '#','#','#','#','#','#','#','#','#','#' },                
             };
 
-            printMaze(mazeMatrix);
+            
 
             // Console settings
             Console.CursorVisible = false;
@@ -45,6 +35,7 @@ namespace TheMaze
             int currentCol = 0;
             int currentRow = 1;
             char currentPlace = mazeMatrix[currentRow, currentCol];
+            printMaze(mazeMatrix, currentRow, currentCol);
 
             while (true)
             {
@@ -58,12 +49,13 @@ namespace TheMaze
                         if ((currentCol >= 1) &&
                             (mazeMatrix[currentRow, currentCol - 1] != '#'))
                         {
+
                             char previousPosition = currentPlace;
                             mazeMatrix[currentRow, currentCol] = ' ';
                             mazeMatrix[currentRow, currentCol - 1] = previousPosition;
                             currentCol--;
                             Console.Clear();
-                            printMaze(mazeMatrix);
+                            printMaze(mazeMatrix, currentRow, currentCol);
                         }
 
                     }
@@ -72,12 +64,47 @@ namespace TheMaze
                         if (((currentCol + 1) < mazeMatrix.GetLength(1)) &&
                             (mazeMatrix[currentRow, currentCol + 1] != '#'))
                         {
+                            
+                            if  (mazeMatrix[currentRow, currentCol + 1] == '?')
+                            {
+                                
+                                Console.WriteLine(@"You have code (string something = 2 + 3 + ""word"" ;). What console will be print!");
+                                Console.WriteLine("1. 7word");
+                                Console.WriteLine("2. 23word");
+                                Console.WriteLine("3. 2 + 3 + word");
+                                Console.Write("Enter your choice: ");
+                                int firstChoice = int.Parse(Console.ReadLine());
+
+                                switch (firstChoice)
+                                {
+                                    case 1:
+                                        Console.WriteLine("Correct! Right is your way");
+                                        break;
+                                    case 2:
+                                        Console.WriteLine("You must learn more C#");
+                                        break;
+                                    case 3:
+                                        Console.WriteLine("You must learn more C#");
+                                        break;
+                                    default:
+                                        Console.WriteLine("Error! Please try again");
+                                        break;
+                                }
+                                //Pause game for answer
+                                var continiue = (Console.ReadLine());
+
+                                switch (continiue)
+                                {
+                                    default:
+                                        break;
+                                }
+                            }
                             char previousPosition = currentPlace;
                             mazeMatrix[currentRow, currentCol] = ' ';
                             mazeMatrix[currentRow, currentCol + 1] = previousPosition;
                             currentCol++;
                             Console.Clear();
-                            printMaze(mazeMatrix);
+                            printMaze(mazeMatrix, currentRow, currentCol);
                         }
 
                     }
@@ -91,7 +118,7 @@ namespace TheMaze
                             mazeMatrix[currentRow + 1, currentCol] = previousPosition;
                             currentRow++;
                             Console.Clear();
-                            printMaze(mazeMatrix);
+                            printMaze(mazeMatrix, currentRow, currentCol);
                         }
                     }
                     if (keyPressed.Key == ConsoleKey.UpArrow)
@@ -104,7 +131,7 @@ namespace TheMaze
                             mazeMatrix[currentRow - 1, currentCol] = previousPosition;
                             currentRow--;
                             Console.Clear();
-                            printMaze(mazeMatrix);
+                            printMaze(mazeMatrix, currentRow, currentCol);
                         }
                     }
                 }
@@ -112,13 +139,23 @@ namespace TheMaze
 
 
         }
-        static void printMaze(char[,] mazeMatrix)
+        static void printMaze(char[,] matrix, int currentRow, int currentCol)
         {
-            for (int row = 0; row < 20; row++)
+            for (int row = 0; row < matrix.GetLength(0); row++)
             {
-                for (int col = 0; col < 20; col++)
+                for (int col = 0; col < matrix.GetLength(1); col++)
                 {
-                    Console.Write("{0} ", mazeMatrix[row, col]);
+                    if ((row >= currentRow - 2) && (row <= currentRow + 2) &&
+                        (col >= currentCol - 2) && (col <= currentCol + 2))
+                    {
+                        Console.Write("{0} ", matrix[row, col]);
+                    }
+                    else
+                    {
+                        Console.Write("* ");
+                    }
+                    
+                    
                 }
 
                 Console.WriteLine();
