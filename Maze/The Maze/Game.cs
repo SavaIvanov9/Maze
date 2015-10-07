@@ -4,28 +4,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace TheMaze
 {
-    class Game
+    class Program
     {
-        
+        // Random generator.
+        private static Random rand = new Random();
+        // Here you should add all question positions along with their question index. Positions are string is format "{row} {col}"
+        public static Dictionary<string, int> questionPositions = new Dictionary<string, int>()
+        {
+            { "1 1", 0}
+        };
+
+        static bool isRunning = true;
         static void Main(string[] args)
         {
-            
-            
+
             char[,] mazeMatrix =
-            {   //size of matrix we take with getLengt(0) and getLenght(1). You can input different mazes
-                { '#','#','#','#','#','#','#','#','#','#' },
-                { 'O','?','#',' ',' ',' ','#',' ',' ','#' },
-                { '#',' ','#',' ','#',' ','#','#',' ','#' },
-                { '#','?',' ',' ','#',' ',' ',' ',' ','#' },
-                { '#','#','#',' ','#','#','#','#',' ','#' },
-                { '#',' ',' ',' ',' ','#',' ',' ',' ','#' },
-                { '#',' ','#','#',' ','#',' ','#',' ','#' },
-                { '#',' ','#',' ',' ','#',' ','#','#','#' },
-                { '#',' ','#',' ','#','#',' ',' ',' ',' ' },
-                { '#','#','#','#','#','#','#','#','#','#' },
+            {
+                { '#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#' },
+                { 'O','?','#',' ',' ',' ','#',' ',' ','#',' ',' ',' ','#',' ','#',' ',' ',' ','#' },
+                { '#',' ','#',' ','#',' ','#','#',' ','#',' ','#',' ',' ',' ','#',' ','#','#','#' },
+                { '#','?',' ',' ','#',' ',' ',' ',' ','#',' ','#','#','#',' ',' ',' ','#',' ','#' },
+                { '#','#','#',' ','#','#','#','#',' ','#',' ',' ',' ','#','#','#','#','#',' ','#' },
+                { '#',' ',' ',' ',' ','#',' ',' ',' ','#','#','#',' ',' ',' ',' ',' ',' ',' ','#' },
+                { '#',' ','#','#',' ','#',' ','#',' ','#',' ',' ',' ','#',' ','#','#','#','#','#' },
+                { '#',' ','#',' ',' ','#',' ','#','#','#',' ','#','#','#',' ','#',' ',' ',' ','#' },
+                { '#',' ','#',' ','#','#',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ','#',' ','#' },
+                { '#','#','#',' ','#',' ',' ','#',' ','#','#','#',' ','#','#','#','#','#',' ','#' },
+                { '#',' ',' ',' ','#',' ','#','#',' ','#',' ','#','#','#',' ',' ',' ',' ',' ','#' },
+                { '#',' ','#','#','#','#','#',' ',' ','#',' ',' ','#',' ',' ','#',' ','#','#','#' },
+                { '#',' ','#',' ',' ',' ','#',' ','#','#','#',' ',' ',' ',' ','#',' ',' ',' ','#' },
+                { '#',' ',' ',' ','#',' ','#',' ',' ',' ','#','#','#','#',' ','#','#','#','#','#' },
+                { '#','#','#',' ','#',' ','#',' ','#',' ',' ',' ',' ','#',' ',' ',' ',' ',' ','#' },
+                { '#',' ',' ',' ','#',' ','#',' ','#','#','#','#',' ','#','#',' ','#','#',' ','#' },
+                { '#',' ','#','#','#',' ','#',' ',' ',' ',' ','#',' ','#',' ',' ','#',' ',' ','#' },
+                { '#',' ','#',' ',' ',' ','#','#',' ','#',' ','#',' ','#',' ','#','#',' ','#','#' },
+                { '#',' ','#',' ','#',' ','#',' ',' ','#',' ',' ',' ','#',' ',' ','#',' ',' ',' ' },
+                { '#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#' },
             };
 
 
@@ -37,9 +53,9 @@ namespace TheMaze
             int currentCol = 0;
             int currentRow = 1;
             char currentPlace = mazeMatrix[currentRow, currentCol];
-            printMaze(mazeMatrix, currentRow, currentCol);
+            PrintMaze(mazeMatrix, currentRow, currentCol);
 
-            while (true)
+            while (isRunning)
             {
                 // Move current place
                 if (Console.KeyAvailable)
@@ -56,8 +72,13 @@ namespace TheMaze
                             mazeMatrix[currentRow, currentCol] = ' ';
                             mazeMatrix[currentRow, currentCol - 1] = previousPosition;
                             currentCol--;
+
+                            OnQuestionAction(currentCol, currentRow);
+
                             Console.Clear();
-                            printMaze(mazeMatrix, currentRow, currentCol);
+                            PrintMaze(mazeMatrix, currentRow, currentCol);
+
+                            CheckForEnd(currentCol, currentRow);
                         }
 
                     }
@@ -66,47 +87,17 @@ namespace TheMaze
                         if (((currentCol + 1) < mazeMatrix.GetLength(1)) &&
                             (mazeMatrix[currentRow, currentCol + 1] != '#'))
                         {
-
-                            if (mazeMatrix[currentRow, currentCol + 1] == '?')
-                            {
-                                // here must input class questions
-                                Console.WriteLine(@"You have code (string something = 2 + 3 + ""word"" ;). What console will be print!");
-                                Console.WriteLine("1. 7word");
-                                Console.WriteLine("2. 23word");
-                                Console.WriteLine("3. 2 + 3 + word");
-                                Console.Write("Enter your choice: ");
-                                int firstChoice = int.Parse(Console.ReadLine());
-
-                                switch (firstChoice)
-                                {
-                                    case 1:
-                                        Console.WriteLine("Correct! Right is your way");
-                                        break;
-                                    case 2:
-                                        Console.WriteLine("You must learn more C#");
-                                        break;
-                                    case 3:
-                                        Console.WriteLine("You must learn more C#");
-                                        break;
-                                    default:
-                                        Console.WriteLine("Error! Please try again");
-                                        break;
-                                }
-                                //Pause game for answer
-                                var continiue = (Console.ReadLine());
-
-                                switch (continiue)
-                                {
-                                    default:
-                                        break;
-                                }
-                            }
                             char previousPosition = currentPlace;
                             mazeMatrix[currentRow, currentCol] = ' ';
                             mazeMatrix[currentRow, currentCol + 1] = previousPosition;
                             currentCol++;
+
+                            OnQuestionAction(currentCol, currentRow);
+
                             Console.Clear();
-                            printMaze(mazeMatrix, currentRow, currentCol);
+                            PrintMaze(mazeMatrix, currentRow, currentCol);
+
+                            CheckForEnd(currentCol, currentRow);
                         }
 
                     }
@@ -119,8 +110,13 @@ namespace TheMaze
                             mazeMatrix[currentRow, currentCol] = ' ';
                             mazeMatrix[currentRow + 1, currentCol] = previousPosition;
                             currentRow++;
+
+                            OnQuestionAction(currentCol, currentRow);
+
                             Console.Clear();
-                            printMaze(mazeMatrix, currentRow, currentCol);
+                            PrintMaze(mazeMatrix, currentRow, currentCol);
+
+                            CheckForEnd(currentCol, currentRow);
                         }
                     }
                     if (keyPressed.Key == ConsoleKey.UpArrow)
@@ -132,8 +128,13 @@ namespace TheMaze
                             mazeMatrix[currentRow, currentCol] = ' ';
                             mazeMatrix[currentRow - 1, currentCol] = previousPosition;
                             currentRow--;
+
+                            OnQuestionAction(currentCol, currentRow);
+
                             Console.Clear();
-                            printMaze(mazeMatrix, currentRow, currentCol);
+                            PrintMaze(mazeMatrix, currentRow, currentCol);
+
+                            CheckForEnd(currentCol, currentRow);
                         }
                     }
                 }
@@ -142,7 +143,51 @@ namespace TheMaze
 
         }
 
-        static void printMaze(char[,] matrix, int currentRow, int currentCol)
+        private static void OnQuestionAction(int currentCol, int currentRow)
+        {
+            if (GetQuestionIndex(currentRow, currentCol) > -1)
+            {
+                int randNum = rand.Next(1, 15);
+
+                Questions.QuestionsList(randNum, GetQuestionIndex(currentRow, currentCol));
+
+                //Pause game for answer
+                var continiue = (Console.ReadLine());
+
+                switch (continiue)
+                {
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private static int GetQuestionIndex(int row, int column)
+        {
+            string key = row + " " + column;
+            if (questionPositions.ContainsKey(key))
+            {
+                int questionIndex = questionPositions[key];
+
+                return questionIndex;
+            }
+
+            return -1;
+        }
+
+        static void CheckForEnd(int currCol, int currRow)
+        {
+            if ((currCol == 19) && (currRow == 18))
+            {
+                Console.Clear();
+                Console.WriteLine("GOOD JOB!!!");
+                Console.ReadKey();
+                isRunning = false;
+            }
+        }
+
+        //Printing muted maze
+        static void PrintMaze(char[,] matrix, int currentRow, int currentCol)
         {
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
@@ -158,10 +203,9 @@ namespace TheMaze
                         Console.Write("* ");
                     }
                 }
+
                 Console.WriteLine();
             }
         }
     }
 }
-
-
