@@ -5,6 +5,8 @@ ehthumbs.db
 # Bin and debug folders
 bin/
 obj/
+bin\
+obj\
 
 # Folder config file
 Desktop.ini
