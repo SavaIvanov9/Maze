@@ -10,7 +10,17 @@ namespace TheMaze
         // Here you should add all question indexes with their corresponding directions.
         private static Dictionary<int, string> questionPositionsDir = new Dictionary<int, string>()
         {
-            { 0, "Right" }
+            { 0, "Up" },
+            { 1, "Back" },
+            { 2, "Back" },
+            { 3, "Right" },
+            { 4, "Right" },
+            { 5, "Back" },
+            { 6, "Down" },
+            { 7, "Right" },
+            { 8, "Down" },
+            { 9, "Left" },
+            { 10, "Right" },
         };
 
         public static void QuestionsList(int questionNum, int questionPosIndex)
