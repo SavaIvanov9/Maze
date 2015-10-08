@@ -199,7 +199,7 @@ namespace TheMaze
         {
             if (GetQuestionIndex(currentRow, currentCol) > -1)
             {
-                int randNum = rand.Next(1, 15);
+                int randNum = rand.Next(1, 20);
 
                 Questions.QuestionsList(randNum, GetQuestionIndex(currentRow, currentCol));
                                
