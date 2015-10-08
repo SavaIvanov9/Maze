@@ -7,7 +7,7 @@ namespace TheMaze
 {
     public static class Questions
     {
-        // Here you should add all question indexes with their corresponding directions.
+        // Here are question indexes with their corresponding directions.
         private static Dictionary<int, string> questionPositionsDir = new Dictionary<int, string>()
         {
             { 0, "Up" },

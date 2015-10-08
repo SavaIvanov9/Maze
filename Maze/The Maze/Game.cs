@@ -35,6 +35,8 @@ namespace TheMaze
             Console.WriteLine("Press Enter to start.");
             Console.WriteLine();
             Console.ReadKey();
+
+            //Labirinth map
             char[,] mazeMatrix =
             {
                 { '#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#' },
@@ -70,7 +72,7 @@ namespace TheMaze
             // Game core
             while (isRunning)
             {
-                // Move current place
+                // Move engine
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo keyPressed = Console.ReadKey(true);
