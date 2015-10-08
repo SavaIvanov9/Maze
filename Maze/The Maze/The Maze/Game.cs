@@ -31,12 +31,13 @@ namespace TheMaze
         static void Main(string[] args)
         {
             Console.WriteLine("You are in very dark labyrinth and you can see only a few steps around.");
-            Console.WriteLine("Find the questions and answer them correct to get the right way for the exit. Good luck!");
+            Console.WriteLine("Find the questions and answer them correct to get the right way for the exit.");
+            Console.WriteLine(@"Move with Arrow Keys, ""O"" marks your place. Good luck!" );
             Console.WriteLine("Press Enter to start.");
             Console.WriteLine();
             Console.ReadKey();
 
-            //Labirinth map
+            //Labirinth Map
             char[,] mazeMatrix =
             {
                 { '#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#' },

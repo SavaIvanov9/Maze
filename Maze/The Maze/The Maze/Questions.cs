@@ -22,7 +22,7 @@ namespace TheMaze
             { 9, "Left" },
             { 10, "Left" },
         };
-
+        // Questions
         public static void QuestionsList(int questionNum, int questionPosIndex)
         {
 
@@ -235,21 +235,27 @@ namespace TheMaze
 
         private static void PrintResponse(int correctAnswer, int questionPosIndex)
         {
-            int firstChoice = int.Parse(Console.ReadLine());
-
+             int firstChoice;
+            bool result=int.TryParse(Console.ReadLine(), out  firstChoice);
+          
+            
             if (firstChoice == correctAnswer)
             {
                 string direction = GetDirection(questionPosIndex);
                 Console.WriteLine("Correct! {0} is your way", direction);
             }
-            else if (firstChoice <= 3)
+            else if (firstChoice <= 3)           
             {
                 Console.WriteLine("You must learn more C#");
             }
+                           
             else
             {
+               
                 Console.WriteLine("Error! Please try again");
             }
+            
+
         }
 
         private static string GetDirection(int questionPosIndex)

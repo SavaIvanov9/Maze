@@ -1,5 +1,0 @@
-I:\Working A Level\Computing\The Maze\The Maze\The Maze\bin\Release\The Maze.exe
-I:\Working A Level\Computing\The Maze\The Maze\The Maze\bin\Release\The Maze.pdb
-I:\Working A Level\Computing\The Maze\The Maze\The Maze\obj\x86\Release\ResolveAssemblyReference.cache
-I:\Working A Level\Computing\The Maze\The Maze\The Maze\obj\x86\Release\The Maze.exe
-I:\Working A Level\Computing\The Maze\The Maze\The Maze\obj\x86\Release\The Maze.pdb
